@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="card">
+        <h1>Sign In</h1>
+        <p class="subtitle">Enter your details to continue.</p>
+
+        <!-- Error messages -->
+        <div id="errorBox" class="error-msg" style="display:none;"></div>
+
+        <!--
+          POST to /login → handled by LoginServlet
+          Action uses a relative path since the form is at the project root level.
+          Using a relative path here is safe because login.html will always
+          be served from the project root (context path), so the level never changes.
+        -->
+        <form action="login" method="post">
+
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name"
+                       placeholder="e.g. Kenneth"
+                       value="" required>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age"
+                       placeholder="e.g. 20"
+                       min="1" max="150"
+                       value="" required>
+            </div>
+
+            <!-- Remember Me + days selector -->
+            <div class="remember-row">
+                <input type="checkbox" id="rememberMe" name="rememberMe" onchange="toggleDays(this)">
+                <label for="rememberMe">Remember me for</label>
+                <div id="daysGroup">
+                    <select name="rememberDays" id="rememberDays">
+                        <option value="1">1 day</option>
+                        <option value="7" selected>7 days</option>
+                        <option value="30">30 days</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Login</button>
+        </form>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
